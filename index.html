@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Flash Game</title>
+    <style>
+       
+        body {
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-family: Georgia, serif;
+            margin: 0;
+        }
+       
+        .game-container {
+            background-color: #ffffff;
+            border: 2px solid #4a90e2;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+            width: 90%;
+            max-width: 450px;
+            padding: 20px;
+            text-align: center;
+        }
+       
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: normal;
+            text-align: center;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 8px;
+        }
+       
+        .score-container {
+            background: #e8f5e8;
+            border: 1px solid #4a90e2;
+            border-radius: 6px;
+            padding: 8px;
+            margin: 8px 0;
+            display: inline-block;
+            min-width: 80px;
+        }
+       
+        .score-label {
+            font-weight: normal;
+            color: #666;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+       
+        #score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 2px;
+        }
+       
+        #english-word {
+            font-size: 1.6rem;
+            font-weight: normal;
+            color: #2c3e50;
+            margin: 15px 0;
+            text-transform: capitalize;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 12px;
+        }
+       
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+       
+        .option-btn {
+            background: #fff;
+            border: 1px solid #4a90e2;
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-transform: capitalize;
+            font-weight: normal;
+            color: #333;
+        }
+       
+        .option-btn:hover {
+            background: #e8f5e8;
+            border-color: #357abd;
+            transform: translateY(-1px);
+        }
+       
+        .option-btn:active {
+            background: #e9ecef;
+        }
+       
+        .correct {
+            background: #d4edda !important;
+            color: #155724 !important;
+            border-color: #c3e6cb !important;
+        }
+       
+        .incorrect {
+            background: #f8d7da !important;
+            color: #721c24 !important;
+            border-color: #f5c6cb !important;
+        }
+       
+        .feedback {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 12px 0;
+        }
+       
+        .feedback-icon {
+            font-size: 3rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+       
+        .show-feedback {
+            opacity: 1 !important;
+        }
+       
+        #restart-btn {
+            background: #4a90e2;
+            color: white;
+            border: 1px solid #357abd;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: normal;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.2s ease;
+        }
+       
+        #restart-btn:hover {
+            background: #357abd;
+            border-color: #2c5282;
+            transform: translateY(-1px);
+        }
+       
+        #restart-btn:active {
+            background: #2c5282;
+        }
+       
+        #sound-toggle-btn {
+            background: #6c757d;
+            color: white;
+            border: 1px solid #5a6268;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: normal;
+            cursor: pointer;
+            margin-top: 8px;
+            margin-left: 8px;
+            transition: all 0.2s ease;
+        }
+       
+        #sound-toggle-btn:hover {
+            background: #5a6268;
+            border-color: #495057;
+            transform: translateY(-1px);
+        }
+       
+        #sound-toggle-btn:active {
+            background: #495057;
+        }
+       
+        .instructions {
+            background: #e8f5e8;
+            border: 1px solid #4a90e2;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #2c3e50;
+            line-height: 1.3;
+        }
+       
+        @media (max-width: 480px) {
+            .game-container {
+                padding: 20px;
+            }
+           
+            h1 {
+                font-size: 1.8rem;
+            }
+           
+            #english-word {
+                font-size: 2.2rem;
+            }
+           
+            .option-btn {
+                padding: 15px 15px;
+                font-size: 1.4rem;
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>French Flash Game</h1>
+       
+        <div class="score-container">
+            <div class="score-label">Score</div>
+            <div id="score">0</div>
+        </div>
+       
+        <div id="english-word">dog</div>
+       
+        <div class="feedback">
+            <div id="feedback-icon" class="feedback-icon"></div>
+        </div>
+       
+        <div class="options-container" id="options-container">
+            <!-- Buttons will be generated by JavaScript -->
+        </div>
+       
+        <button id="restart-btn">Restart Game</button>
+        <button id="sound-toggle-btn">🔊 Sound On</button>
+       
+        <div class="instructions" id="credits">
+            Made by Teo Doucet
+        </div>
+        <div id="easter-egg" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: rgba(0,0,0,0.9); color: white; padding: 20px; border-radius: 10px; font-size: 1.2rem; text-align: center;">
+        </div>
+    </div>
+
+    <script>
+        // Sound system using Web Audio API
+        class SoundSystem {
+            constructor() {
+                this.audioContext = null;
+                this.enabled = true;
+            }
+
+            init() {
+                if (!this.audioContext) {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            }
+
+            playSound(frequency, duration, type = 'sine') {
+                if (!this.enabled || !this.audioContext) return;
+                
+                const oscillator = this.audioContext.createOscillator();
+                const gainNode = this.audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(this.audioContext.destination);
+                
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+                
+                gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + duration);
+                
+                oscillator.start(this.audioContext.currentTime);
+                oscillator.stop(this.audioContext.currentTime + duration);
+            }
+
+            playCorrectSound() {
+                this.playSound(523.25, 0.1); // C5
+                setTimeout(() => this.playSound(659.25, 0.1), 50); // E5
+                setTimeout(() => this.playSound(783.99, 0.2), 100); // G5
+            }
+
+            playIncorrectSound() {
+                this.playSound(200, 0.2, 'sawtooth'); // Low buzz
+            }
+
+            playGameCompleteSound() {
+                this.playSound(523.25, 0.1); // C5
+                setTimeout(() => this.playSound(659.25, 0.1), 100); // E5
+                setTimeout(() => this.playSound(783.99, 0.1), 200); // G5
+                setTimeout(() => this.playSound(1046.50, 0.3), 300); // C6
+            }
+
+            playClickSound() {
+                this.playSound(800, 0.05); // Quick click
+            }
+
+            toggle() {
+                this.enabled = !this.enabled;
+                return this.enabled;
+            }
+        }
+
+        const soundSystem = new SoundSystem();
+        
+        // Word data: English to French translations
+        const allWordPairs = [
+            { english: "dog", french: "chien" },
+            { english: "cat", french: "chat" },
+            { english: "house", french: "maison" },
+            { english: "water", french: "eau" },
+            { english: "bread", french: "pain" },
+            { english: "book", french: "livre" },
+            { english: "car", french: "voiture" },
+            { english: "tree", french: "arbre" },
+            { english: "sun", french: "soleil" },
+            { english: "moon", french: "lune" },
+            { english: "flower", french: "fleur" },
+            { english: "bird", french: "oiseau" },
+            { english: "fish", french: "poisson" },
+            { english: "apple", french: "pomme" },
+            { english: "door", french: "porte" },
+            { english: "window", french: "fenêtre" },
+            { english: "table", french: "table" },
+            { english: "chair", french: "chaise" },
+            { english: "computer", french: "ordinateur" },
+            { english: "phone", french: "téléphone" }
+        ];
+        
+        let wordPairs = [];
+       
+        // Game state variables
+        let currentWordIndex = 0;
+        let score = 0;
+        let gameActive = true;
+       
+        // DOM elements
+        const englishWordElement = document.getElementById('english-word');
+        const optionsContainer = document.getElementById('options-container');
+        const scoreElement = document.getElementById('score');
+        const feedbackIcon = document.getElementById('feedback-icon');
+        const restartBtn = document.getElementById('restart-btn');
+        const soundToggleBtn = document.getElementById('sound-toggle-btn');
+        const creditsElement = document.getElementById('credits');
+        const easterEggElement = document.getElementById('easter-egg');
+       
+        // Initialize: Create shuffled word list and start game
+        function initGame() {
+            // Initialize sound system on first user interaction
+            soundSystem.init();
+            
+            // Create a shuffled copy of all words
+            wordPairs = [...allWordPairs];
+            shuffleArray(wordPairs);
+            
+            currentWordIndex = 0;
+            score = 0;
+            gameActive = true;
+            scoreElement.textContent = score;
+            showNextWord();
+        }
+       
+        // Display the next word in the sequence
+        function showNextWord() {
+            if (currentWordIndex >= wordPairs.length) {
+                // End of game
+                englishWordElement.textContent = "Game Complete!";
+                optionsContainer.innerHTML = "";
+                feedbackIcon.textContent = "🏆";
+                feedbackIcon.className = "feedback-icon show-feedback";
+                soundSystem.playGameCompleteSound();
+                return;
+            }
+           
+            // Get current word pair
+            const currentPair = wordPairs[currentWordIndex];
+            englishWordElement.textContent = currentPair.english;
+           
+            // Generate answer options
+            generateOptions(currentPair.french);
+        }
+       
+        // Generate three answer options (one correct, two incorrect)
+        function generateOptions(correctAnswer) {
+            // Clear previous options
+            optionsContainer.innerHTML = "";
+           
+            // Get two random incorrect answers
+            let incorrectAnswers = [];
+            const availableWords = wordPairs.map(pair => pair.french).filter(french => french !== correctAnswer);
+           
+            // Select two random incorrect answers
+            while (incorrectAnswers.length < 2) {
+                const randomIndex = Math.floor(Math.random() * availableWords.length);
+                const candidate = availableWords[randomIndex];
+                if (!incorrectAnswers.includes(candidate)) {
+                    incorrectAnswers.push(candidate);
+                }
+            }
+           
+            // Combine correct and incorrect answers
+            const allOptions = [correctAnswer, ...incorrectAnswers];
+           
+            // Shuffle the options
+            shuffleArray(allOptions);
+           
+            // Create buttons for each option
+            allOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option-btn');
+                button.dataset.answer = option;
+                button.dataset.correct = option === correctAnswer ? 'true' : 'false';
+               
+                button.addEventListener('click', handleAnswerClick);
+                optionsContainer.appendChild(button);
+            });
+           
+            // Reset feedback
+            feedbackIcon.textContent = "";
+            feedbackIcon.classList.remove('show-feedback');
+        }
+       
+        // Fisher-Yates shuffle algorithm
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+       
+        // Handle when an answer button is clicked
+        function handleAnswerClick(event) {
+            if (!gameActive) return;
+            
+            // Play click sound
+            soundSystem.playClickSound();
+            
+            const selectedButton = event.target;
+            const isCorrect = selectedButton.dataset.correct === 'true';
+            
+            if (isCorrect) {
+                // Correct answer
+                score++;
+                scoreElement.textContent = score;
+                selectedButton.classList.add('correct');
+                feedbackIcon.textContent = "✓";
+                feedbackIcon.style.color = "#28a745";
+                soundSystem.playCorrectSound();
+            } else {
+                // Incorrect answer
+                selectedButton.classList.add('incorrect');
+                feedbackIcon.textContent = "✗";
+                feedbackIcon.style.color = "#dc3545";
+                soundSystem.playIncorrectSound();
+               
+                // Highlight the correct answer
+                const correctButton = Array.from(optionsContainer.children).find(
+                    btn => btn.dataset.correct === 'true'
+                );
+                if (correctButton) {
+                    correctButton.classList.add('correct');
+                }
+            }
+           
+            // Show feedback
+            feedbackIcon.classList.add('show-feedback');
+           
+            // Disable further clicks during feedback
+            gameActive = false;
+           
+            // Move to next word after a short delay
+            setTimeout(() => {
+                currentWordIndex++;
+                gameActive = true;
+                showNextWord();
+            }, 1500);
+        }
+       
+        // Easter egg: Click on credits for funny animation
+        let clickCount = 0;
+        const funnyMessages = [" YOU FOUND THE HIDDEN TREASURE! "];
+        
+        creditsElement.addEventListener('click', () => {
+            clickCount++;
+            
+            // Show easter egg
+            easterEggElement.style.display = 'block';
+            easterEggElement.textContent = funnyMessages[clickCount % funnyMessages.length];
+            
+            // Add animation effect
+            easterEggElement.style.animation = 'bounce 0.5s ease-in-out';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                easterEggElement.style.display = 'none';
+                easterEggElement.style.animation = '';
+            },5000);
+            
+            // Special message after 5 clicks
+            if (clickCount === 5) {
+                easterEggElement.textContent = " Teo Doucet: French Legend! ";
+                easterEggElement.style.display = 'block';
+                setTimeout(() => {
+                    easterEggElement.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Restart button event listener
+        restartBtn.addEventListener('click', initGame);
+       
+        // Sound toggle button event listener
+        soundToggleBtn.addEventListener('click', () => {
+            const isEnabled = soundSystem.toggle();
+            soundToggleBtn.textContent = isEnabled ? '🔊 Sound On' : '🔇 Sound Off';
+            soundToggleBtn.style.background = isEnabled ? '#6c757d' : '#dc3545';
+        });
+       
+        // Start the game when the page loads
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
