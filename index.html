@@ -146,6 +146,100 @@
             100% { transform: rotate(360deg); }
         }
         
+        .timer-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+        }
+        
+        .timer-label {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc3545;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .timer.warning {
+            color: #ff6b6b;
+            animation: pulse 1s infinite;
+        }
+        
+        .timer.danger {
+            color: #dc3545;
+            animation: pulse 0.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes confetti-fall {
+            0% { 
+                transform: translate(-50%, -50%) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, 300px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        @keyframes float-up {
+            0% { 
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-200px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px #00ff88;
+            }
+            50% { 
+                box-shadow: 0 0 30px #00ff88, 0 0 40px #00ff88;
+            }
+        }
+        
         .game-complete-message {
             text-align: center;
             padding: 20px;
@@ -325,22 +419,150 @@
             line-height: 1.3;
         }
        
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 15px;
+                margin: 10px;
+                max-width: 100%;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .difficulty-buttons {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .difficulty-btn {
+                width: 200px;
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+            
+            .score-container {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .high-score-container {
+                min-width: 120px;
+                text-align: center;
+            }
+            
+            #english-word {
+                font-size: 1.4rem;
+                margin: 10px 0;
+                padding: 15px 10px;
+            }
+            
+            .timer-container {
+                flex-direction: column;
+                gap: 5px;
+                padding: 8px;
+            }
+            
+            .timer {
+                font-size: 1.2rem;
+            }
+            
+            .options-container {
+                gap: 8px;
+                margin: 15px 0;
+            }
+            
+            .option-btn {
+                padding: 12px 16px;
+                font-size: 1rem;
+                min-height: 50px;
+            }
+            
+            .feedback-icon {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 5px;
+            }
+            
+            .instructions {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+        }
+        
         @media (max-width: 480px) {
             .game-container {
-                padding: 20px;
+                padding: 10px;
+                margin: 5px;
+            }
+            
+            .container {
+                padding: 15px;
+                margin: 5px;
             }
            
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin-bottom: 10px;
             }
-           
+            
+            .difficulty-btn {
+                width: 180px;
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+            
             #english-word {
-                font-size: 2.2rem;
+                font-size: 1.2rem;
+                margin: 8px 0;
+                padding: 12px 8px;
+                min-height: 40px;
             }
-           
+            
+            .timer {
+                font-size: 1rem;
+            }
+            
             .option-btn {
-                padding: 15px 15px;
-                font-size: 1.4rem;
+                padding: 10px 12px;
+                font-size: 0.9rem;
+                min-height: 45px;
+            }
+            
+            .feedback-icon {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                margin: 3px;
+            }
+            
+            .instructions {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
+            
+            .score-container {
+                font-size: 0.9rem;
+            }
+            
+            .high-score-container {
+                min-width: 100px;
+                padding: 6px;
             }
         }
         
@@ -380,6 +602,11 @@
        
         <div class="feedback">
             <div id="feedback-icon" class="feedback-icon"></div>
+        </div>
+       
+        <div class="timer-container" id="timer-container" style="display: none;">
+            <div class="timer-label">Time:</div>
+            <div class="timer" id="timer">10</div>
         </div>
        
         <div class="difficulty-buttons">
@@ -461,6 +688,12 @@
                 this.playSound(800, 0.05); // Quick click
             }
 
+            playTimeUpSound() {
+                this.playSound(300, 0.1, 'square'); // Low beeping sound
+                setTimeout(() => this.playSound(250, 0.1, 'square'), 150); // Descending beeps
+                setTimeout(() => this.playSound(200, 0.2, 'square'), 300); // Final low beep
+            }
+
             toggle() {
                 this.enabled = !this.enabled;
                 return this.enabled;
@@ -498,25 +731,79 @@
             { english: "family", french: "famille" },
             { english: "school", french: "école" },
             { english: "teacher", french: "professeur" },
-            { english: "student", french: "étudiant" }
+            { english: "student", french: "étudiant" },
+            // Added harder medium words
+            { english: "book", french: "livre" },
+            { english: "water", french: "eau" },
+            { english: "food", french: "nourriture" },
+            { english: "music", french: "musique" },
+            { english: "time", french: "temps" },
+            { english: "work", french: "travail" },
+            { english: "life", french: "vie" },
+            { english: "world", french: "monde" },
+            { english: "money", french: "argent" },
+            { english: "health", french: "santé" },
+            { english: "year", french: "année" },
+            { english: "day", french: "jour" },
+            { english: "night", french: "nuit" },
+            { english: "morning", french: "matin" },
+            { english: "evening", french: "soir" }
         ];
         
         const hardWords = [
-            { english: "beautiful", french: "beau" },
-            { english: "happy", french: "heureux" },
-            { english: "sad", french: "triste" },
-            { english: "big", french: "grand" },
-            { english: "small", french: "petit" },
-            { english: "good", french: "bon" },
-            { english: "bad", french: "mauvais" },
-            { english: "fast", french: "rapide" },
-            { english: "slow", french: "lent" },
-            { english: "easy", french: "facile" },
-            { english: "difficult", french: "difficile" },
-            { english: "important", french: "important" },
-            { english: "interesting", french: "intéressant" },
-            { english: "delicious", french: "délicieux" },
-            { english: "expensive", french: "cher" }
+            // Difficult French words that look nothing like English
+            { english: "to whisper", french: "chuchoter" },
+            { english: "to shiver", french: "trembler" },
+            { english: "to sparkle", french: "briller" },
+            { english: "to melt", french: "fondre" },
+            { english: "to freeze", french: "geler" },
+            { english: "to bloom", french: "fleurir" },
+            { english: "to wither", french: "se flétrir" },
+            { english: "to flutter", french: "flotter" },
+            { english: "to glide", french: "glisser" },
+            { english: "to stumble", french: "trébucher" },
+            { english: "to tumble", french: "dégringoler" },
+            { english: "to sparkle", french: "scintiller" },
+            { english: "to gleam", french: "luire" },
+            { english: "to flicker", french: "clignoter" },
+            { english: "to shimmer", french: "miroiter" },
+            { english: "to glisten", french: "briller" },
+            { english: "to rustle", french: "bruire" },
+            { english: "to creak", french: "grincer" },
+            { english: "to rumble", french: "gronder" },
+            { english: "to murmur", french: "murmurer" },
+            { english: "to hum", french: "vrombir" },
+            { english: "to buzz", french: "bourdonner" },
+            { english: "to hiss", french: "siffler" },
+            { english: "to crackle", french: "crépiter" },
+            { english: "to snap", french: "claquer" },
+            { english: "to pop", french: "éclater" },
+            { english: "to burst", french: "exploser" },
+            { english: "to crumble", french: "s'effondrer" },
+            { english: "to collapse", french: "s'écrouler" },
+            { english: "to tumble", french: "dégringoler" },
+            { english: "to plunge", french: "plonger" },
+            { english: "to dive", french: "plonger" },
+            { english: "to surface", french: "remonter" },
+            { english: "to emerge", french: "émerger" },
+            { english: "to vanish", french: "disparaître" },
+            { english: "to materialize", french: "matérialiser" },
+            { english: "to evaporate", french: "s'évaporer" },
+            { english: "to dissolve", french: "se dissoudre" },
+            { english: "to crystallize", french: "cristalliser" },
+            { english: "to solidify", french: "se solidifier" },
+            { english: "to liquefy", french: "se liquéfier" },
+            { english: "to vaporize", french: "se vaporiser" },
+            { english: "to ignite", french: "s'enflammer" },
+            { english: "to extinguish", french: "s'éteindre" },
+            { english: "to smolder", french: "couver" },
+            { english: "to blaze", french: "flamber" },
+            { english: "to flicker", french: "vaciller" },
+            { english: "to glow", french: "rayonner" },
+            { english: "to radiate", french: "irradier" },
+            { english: "to pulsate", french: "pulser" },
+            { english: "to vibrate", french: "vibrer" },
+            { english: "to resonate", french: "résonner" }
         ];
         
         const allWordPairs = [...easyWords, ...mediumWords, ...hardWords];
@@ -530,6 +817,8 @@
         let currentDifficulty = 'easy';
         let currentWords = [];
         let highScore = localStorage.getItem('frenchGameHighScore') || 0;
+        let timerInterval = null;
+        let timeLeft = 10;
        
         // DOM elements
         const englishWordElement = document.getElementById('english-word');
@@ -546,8 +835,10 @@
         const loadingElement = document.getElementById('loading');
         const difficultyButtons = document.querySelectorAll('.difficulty-btn');
         const difficultyButtonsContainer = document.querySelector('.difficulty-buttons');
+        const timerContainer = document.getElementById('timer-container');
+        const timerElement = document.getElementById('timer');
        
-        // Initialize: Create shuffled word list and start game
+        // Initialize: Show difficulty selection screen
         function initGame() {
             // Initialize sound system on first user interaction
             soundSystem.init();
@@ -555,17 +846,102 @@
             // Load high score
             highScoreElement.textContent = highScore;
             
-            // Hide difficulty buttons permanently
-            difficultyButtonsContainer.classList.add('hidden');
-            
+            // Show difficulty selection screen
+            showDifficultySelection();
+        }
+        
+        // Show difficulty selection screen
+        function showDifficultySelection() {
             // Reset game state
             score = 0;
             gameActive = true;
             currentWordIndex = 0;
             scoreElement.textContent = score;
             
-            // Start directly with Easy difficulty
-            setDifficulty('easy');
+            // Show difficulty buttons
+            difficultyButtonsContainer.classList.remove('hidden');
+            
+            // Clear the game area
+            englishWordElement.textContent = "Select Difficulty";
+            optionsContainer.innerHTML = `
+                <div style="text-align: center; padding: 20px; grid-column: 1 / -1;">
+                    <h3>Choose your difficulty level:</h3>
+                    <p style="margin: 10px 0; color: #6c757d;">
+                        <strong>Easy:</strong> Basic vocabulary, 3 options<br>
+                        <strong>Medium:</strong> Intermediate words, 4 options, smarter distractors<br>
+                        <strong>Hard:</strong> Expert vocabulary, 5 options, 5-second timer, smartest distractors
+                    </p>
+                </div>
+            `;
+            
+            // Hide timer
+            stopTimer();
+            
+            // Reset progress
+            updateProgress();
+        }
+        
+        // Timer functions
+        function startTimer() {
+            if (currentDifficulty !== 'hard') return;
+            
+            stopTimer();
+            timeLeft = 5; // Reduced from 7 to 5 seconds - much more intense
+            timerContainer.style.display = 'flex';
+            timerElement.textContent = timeLeft;
+            timerElement.className = 'timer';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                
+                // Add warning classes (adjusted for ultra-short timer)
+                if (timeLeft <= 1) {
+                    timerElement.classList.add('danger');
+                } else if (timeLeft <= 3) {
+                    timerElement.classList.add('warning');
+                }
+                
+                if (timeLeft <= 0) {
+                    stopTimer();
+                    handleTimeUp();
+                }
+            }, 1000);
+        }
+        
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timerContainer.style.display = 'none';
+        }
+        
+        function handleTimeUp() {
+            gameActive = false;
+            soundSystem.playIncorrectSound(); // Play wrong sound for timeout mistake
+            feedbackIcon.textContent = "✗"; // Red X for timeout mistake
+            feedbackIcon.className = "feedback-icon show-feedback";
+            feedbackIcon.style.color = "#dc3545"; // Make X red
+            
+            // Disable all buttons
+            const buttons = optionsContainer.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                if (btn.dataset.correct === 'true') {
+                    btn.style.background = '#28a745'; // Green for correct answer
+                    btn.style.color = 'white';
+                }
+            });
+            
+            // Auto advance after showing correct answer
+            setTimeout(() => {
+                currentWordIndex = Math.max(0, currentWordIndex - 1); // Move back one step for timeout mistake
+                updateProgress(); // Update progress bar before showing next word
+                gameActive = true;
+                showNextWord();
+            }, 2000);
         }
         
         // Set difficulty and start game
@@ -574,6 +950,9 @@
             currentWordIndex = 0;
             score = 0;
             scoreElement.textContent = score;
+            
+            // Hide difficulty buttons after selection
+            difficultyButtonsContainer.classList.add('hidden');
             
             // Update UI
             document.querySelector('.score-label').textContent = `${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} Mode`;
@@ -682,6 +1061,9 @@
                 // Generate answer options
                 generateOptions(currentPair.french);
                 updateProgress();
+                
+                // Start timer for hard mode
+                startTimer();
             }, 500);
         }
         
@@ -697,21 +1079,69 @@
             optionsContainer.style.display = 'grid';
         }
        
-        // Generate three answer options (one correct, two incorrect)
+        // Generate answer options (harder for hard mode)
         function generateOptions(correctAnswer) {
             // Clear previous options
             optionsContainer.innerHTML = "";
            
-            // Get two random incorrect answers
+            // Determine number of options based on difficulty
+            const numOptions = currentDifficulty === 'hard' ? 5 : (currentDifficulty === 'medium' ? 4 : 3);
+            const numIncorrect = numOptions - 1;
+            
+            // Get incorrect answers
             let incorrectAnswers = [];
             const availableWords = allWordPairs.map(pair => pair.french).filter(french => french !== correctAnswer);
            
-            // Select two random incorrect answers
-            while (incorrectAnswers.length < 2) {
-                const randomIndex = Math.floor(Math.random() * availableWords.length);
-                const candidate = availableWords[randomIndex];
-                if (!incorrectAnswers.includes(candidate)) {
-                    incorrectAnswers.push(candidate);
+            if (currentDifficulty === 'hard') {
+                // For hard mode: use only hard words as distractors (no easy/medium words)
+                const hardOnlyWords = hardWords.map(pair => pair.french).filter(french => french !== correctAnswer);
+                
+                // Find words with similar length or starting letter from hard words only
+                const similarWords = hardOnlyWords.filter(word => {
+                    const correctLength = correctAnswer.length;
+                    const wordLength = word.length;
+                    const sameLengthRange = Math.abs(correctLength - wordLength) <= 2;
+                    const sameFirstLetter = word.charAt(0).toLowerCase() === correctAnswer.charAt(0).toLowerCase();
+                    return sameLengthRange || sameFirstLetter;
+                });
+                
+                // Prioritize similar hard words, then random hard words
+                const prioritizedWords = [...similarWords, ...hardOnlyWords.filter(w => !similarWords.includes(w))];
+                
+                // Select distractors from hard words only
+                while (incorrectAnswers.length < numIncorrect) {
+                    const candidate = prioritizedWords[Math.floor(Math.random() * prioritizedWords.length)];
+                    if (!incorrectAnswers.includes(candidate)) {
+                        incorrectAnswers.push(candidate);
+                    }
+                }
+            } else if (currentDifficulty === 'medium') {
+                // For medium mode: semi-smart distractors (less aggressive than hard)
+                const somewhatSimilarWords = availableWords.filter(word => {
+                    const correctLength = correctAnswer.length;
+                    const wordLength = word.length;
+                    const sameLengthRange = Math.abs(correctLength - wordLength) <= 3;
+                    return sameLengthRange;
+                });
+                
+                // Mix similar and random words
+                const prioritizedWords = [...somewhatSimilarWords, ...availableWords.filter(w => !somewhatSimilarWords.includes(w))];
+                
+                // Select distractors
+                while (incorrectAnswers.length < numIncorrect) {
+                    const candidate = prioritizedWords[Math.floor(Math.random() * prioritizedWords.length)];
+                    if (!incorrectAnswers.includes(candidate)) {
+                        incorrectAnswers.push(candidate);
+                    }
+                }
+            } else {
+                // For easy: random selection
+                while (incorrectAnswers.length < numIncorrect) {
+                    const randomIndex = Math.floor(Math.random() * availableWords.length);
+                    const candidate = availableWords[randomIndex];
+                    if (!incorrectAnswers.includes(candidate)) {
+                        incorrectAnswers.push(candidate);
+                    }
                 }
             }
            
@@ -726,6 +1156,14 @@
                 const button = document.createElement('button');
                 button.textContent = option;
                 button.classList.add('option-btn');
+                // Adjust button size for more options
+                if (currentDifficulty === 'hard') {
+                    button.style.fontSize = '0.85rem';
+                    button.style.padding = '6px 8px';
+                } else if (currentDifficulty === 'medium') {
+                    button.style.fontSize = '0.9rem';
+                    button.style.padding = '8px 12px';
+                }
                 button.dataset.answer = option;
                 button.dataset.correct = option === correctAnswer ? 'true' : 'false';
                
@@ -749,6 +1187,9 @@
         // Handle when an answer button is clicked
         function handleAnswerClick(event) {
             if (!gameActive) return;
+            
+            // Stop timer when answer is selected
+            stopTimer();
             
             // Play click sound
             soundSystem.playClickSound();
@@ -776,7 +1217,9 @@
                 currentWordIndex++;
                 updateProgress();
             } else {
-                // Incorrect answer - reset high score for perfect run challenge
+                // Incorrect answer - deduct a point and reset high score for perfect run challenge
+                score = Math.max(0, score - 1); // Deduct 1 point, don't go below 0
+                scoreElement.textContent = score;
                 highScore = 0;
                 localStorage.setItem('frenchGameHighScore', highScore);
                 highScoreElement.textContent = highScore;
@@ -785,6 +1228,10 @@
                 feedbackIcon.textContent = "✗";
                 feedbackIcon.style.color = "#dc3545";
                 soundSystem.playIncorrectSound();
+                
+                // Move progress bar back one step
+                currentWordIndex = Math.max(0, currentWordIndex - 1);
+                updateProgress();
                
                 // Highlight the correct answer
                 const correctButton = Array.from(optionsContainer.children).find(
@@ -808,35 +1255,96 @@
             }, 1500);
         }
        
-        // Easter egg: Click on credits for funny animation
-        let clickCount = 0;
-        const funnyMessages = [" YOU FOUND THE HIDDEN TREASURE! "];
-        
+        // Easter egg: Click on credits for amazing effects
         creditsElement.addEventListener('click', () => {
-            clickCount++;
-            
-            // Show easter egg
+            // Show easter egg message with enhanced styling
             easterEggElement.style.display = 'block';
-            easterEggElement.textContent = funnyMessages[clickCount % funnyMessages.length];
+            easterEggElement.textContent = " 🌃 DARK MODE ACTIVATED! 🌃 ";
+            easterEggElement.style.fontSize = '2rem';
+            easterEggElement.style.fontWeight = 'bold';
+            easterEggElement.style.color = '#00ff88';
+            easterEggElement.style.textShadow = '0 0 20px #00ff88, 0 0 40px #00ff88';
+            easterEggElement.style.border = '3px solid #00ff88';
+            easterEggElement.style.borderRadius = '15px';
+            easterEggElement.style.padding = '20px';
+            easterEggElement.style.background = 'rgba(0, 0, 0, 0.9)';
+            easterEggElement.style.animation = 'bounce 0.5s ease-in-out, glow 1s infinite alternate';
             
-            // Add animation effect
-            easterEggElement.style.animation = 'bounce 0.5s ease-in-out';
+            // Create particle effects
+            createDarkModeParticles();
             
-            // Hide after 5 seconds
+            // Change all website colors to dark theme permanently
+            changeWebsiteColors();
+            
+            // Add screen shake effect
+            document.body.style.animation = 'shake 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 500);
+            
+            // Hide message after 2 seconds
             setTimeout(() => {
                 easterEggElement.style.display = 'none';
                 easterEggElement.style.animation = '';
-            },5000);
-            
-            // Special message after 5 clicks
-            if (clickCount === 5) {
-                easterEggElement.textContent = " Teo Doucet: French Legend! ";
-                easterEggElement.style.display = 'block';
-                setTimeout(() => {
-                    easterEggElement.style.display = 'none';
-                }, 3000);
-            }
+                easterEggElement.style.fontSize = '';
+                easterEggElement.style.fontWeight = '';
+                easterEggElement.style.color = '';
+                easterEggElement.style.textShadow = '';
+                easterEggElement.style.border = '';
+                easterEggElement.style.borderRadius = '';
+                easterEggElement.style.padding = '';
+                easterEggElement.style.background = '';
+            },2000);
         });
+        
+        function createDarkModeParticles() {
+            // Create floating dark particles
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = '8px';
+                particle.style.height = '8px';
+                particle.style.background = '#00ff88';
+                particle.style.borderRadius = '50%';
+                particle.style.boxShadow = '0 0 10px #00ff88';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = Math.random() * window.innerHeight + 'px';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                particle.style.animation = 'float-up 2s ease-out forwards';
+                document.body.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 2000);
+            }
+        }
+        
+        let originalColors = {};
+        
+        function changeWebsiteColors() {
+            // Apply dark theme colors permanently
+            document.body.style.background = 'linear-gradient(45deg, #1a1a2a, #16213e, #0f3460)';
+            
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.background = 'linear-gradient(135deg, #2d3748 0%, #00416a 100%)';
+            }
+            
+            // Change all buttons to neon colors
+            document.querySelectorAll('.btn, .option-btn').forEach(btn => {
+                const colors = ['#00ff88', '#ff006e', '#ffbe0b', '#fb5607', '#3b82f6'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                btn.style.background = randomColor;
+                btn.style.color = 'white';
+                btn.style.border = `2px solid ${randomColor}`;
+                btn.style.boxShadow = `0 0 10px ${randomColor}`;
+            });
+            
+            // Change text colors to neon
+            document.querySelectorAll('h1, h2, h3').forEach(elem => {
+                elem.style.color = '#00ff88';
+                elem.style.textShadow = '0 0 5px #00ff88';
+            });
+        }
 
         // Restart button event listener
         restartBtn.addEventListener('click', initGame);
